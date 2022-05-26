@@ -8,7 +8,7 @@ import './BusinessSummary.css';
 const BusinessSummary = () => {
   return (
     <div className=''>
-      <h3 className='text-center py-5 text-4xl font-bold text-primary uppercase'>Our Business is Growing on Trust</h3>
+      <h3 className='text-center py-5 text-4xl font-bold text-secondary uppercase'>Our Business is Growing on Trust</h3>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-10 py-16 gap-5 summary-section'>
 
         <div class="card w-79  bg-base-100 shadow-xl">

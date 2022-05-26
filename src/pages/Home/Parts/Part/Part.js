@@ -14,7 +14,7 @@ const Part = ({ part }) => {
           <p className='font-semibold'>Minimum Order: {minimum_order}pcs</p>
 
           <div class="card-actions">
-            <button class="btn btn-primary">Buy Now</button>
+            <button class="btn btn-primary font-bold text-white">Buy Now</button>
           </div>
         </div>
       </div>

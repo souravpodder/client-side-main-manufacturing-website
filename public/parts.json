@@ -1,5 +1,5 @@
 [
-  { "_id": 1,
+  {
     "name": "Aperture",
     "price": 29,
     "img": "https://i.ibb.co/KX7v93D/Aperture-1.jpg",
@@ -7,7 +7,7 @@
     "minimum_order": 1000,
     "available":34000
   },
-  { "_id": 2,
+  {
     "name": "Bperture",
     "price": 13,
     "img": "https://i.ibb.co/KX7v93D/Aperture-1.jpg",
@@ -15,7 +15,7 @@
     "minimum_order": 500,
     "available":3200
   },
-  { "_id": 3,
+  {
     "name": "Cperture",
     "price": 41,
     "img": "https://i.ibb.co/KX7v93D/Aperture-1.jpg",

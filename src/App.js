@@ -2,6 +2,14 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
+// react toast import 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import AddReview from './pages/Dashboard/AddReview';
+import Dashboard from './pages/Dashboard/Dashboard';
+import MyOrders from './pages/Dashboard/MyOrders';
+import MyProfile from './pages/Dashboard/MyProfile';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Login/Register';
@@ -26,12 +34,25 @@ function App() {
           </RequireAuth>
         }></Route>
 
+        {/* dashboard routes  */}
+
+        <Route path="dashboard" element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+        } >
+
+          <Route index element={<MyOrders />} />
+          <Route path='addReview' element={<AddReview />} />
+          <Route path='myProfile' element={<MyProfile />} />
+        </Route>
 
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
       </Routes>
       <Footer />
+      <ToastContainer />
     </div >
   );
 }

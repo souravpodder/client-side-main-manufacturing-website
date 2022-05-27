@@ -8,19 +8,19 @@
     "available":34000
   },
   { "_id": 2,
-    "name": "Aperture",
-    "price": 29,
+    "name": "Bperture",
+    "price": 13,
     "img": "https://i.ibb.co/KX7v93D/Aperture-1.jpg",
-    "description": "Aperture is the opening of a lens's diaphragm through which light passes. It is calibrated in f/stops and is generally written as numbers such as 1.4, 2, 2.8, 4, 5.6, 8, 11 and 16",
-    "minimum_order": 1000,
-    "available":34000
+    "description": "Bperture is the opening of a lens's diaphragm through which light passes. It is calibrated in f/stops and is generally written as numbers such as 1.4, 2, 2.8, 4, 5.6, 8, 11 and 16",
+    "minimum_order": 500,
+    "available":3200
   },
   { "_id": 3,
-    "name": "Aperture",
-    "price": 29,
+    "name": "Cperture",
+    "price": 41,
     "img": "https://i.ibb.co/KX7v93D/Aperture-1.jpg",
-    "description": "Aperture is the opening of a lens's diaphragm through which light passes. It is calibrated in f/stops and is generally written as numbers such as 1.4, 2, 2.8, 4, 5.6, 8, 11 and 16",
-    "minimum_order": 1000,
-    "available":34000
+    "description": "Cperture is the opening of a lens's diaphragm through which light passes. It is calibrated in f/stops and is generally written as numbers such as 1.4, 2, 2.8, 4, 5.6, 8, 11 and 16",
+    "minimum_order": 1500,
+    "available":45000
   }
 ]

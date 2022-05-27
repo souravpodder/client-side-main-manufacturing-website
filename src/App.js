@@ -5,6 +5,8 @@ import Contact from './pages/Contact/Contact';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Login/Register';
+import RequireAuth from './pages/Login/RequireAuth';
+import Purchase from './pages/Purchase/Purchase';
 import Footer from './pages/Shared/Footer/Footer';
 import Navbar from './pages/Shared/Navbar';
 
@@ -16,6 +18,15 @@ function App() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
         <Route path='/about' element={<About />}></Route>
+
+        {/* user authentication routes */}
+        <Route path='/purchase/:itemId' element={
+          <RequireAuth>
+            <Purchase />
+          </RequireAuth>
+        }></Route>
+
+
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/contact' element={<Contact />}></Route>

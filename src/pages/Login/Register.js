@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -13,25 +14,30 @@ const Register = () => {
     error,
   ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
   let errorElement;
   if (error) {
     errorElement = <p className='text-center text-red-600'>Error: {error && error.message}</p>
   }
 
   if (loading) {
-    return <p>loading...</p>;
+    return <Loading />
   }
 
   if (user) {
     navigate('/');
   }
 
-  const handleSignUp = event => {
+  const handleSignUp = async (event) => {
     event.preventDefault();
     const email = event.target.email?.value;
     const password = event.target.password?.value;
+    const name = event.target.name?.value;
 
-    createUserWithEmailAndPassword(email, password);
+    await createUserWithEmailAndPassword(email, password);
+
+    await updateProfile({ displayName: name });
   }
 
   return (
@@ -55,7 +61,7 @@ const Register = () => {
               <label class="label">
                 <span class="label-text">Password</span>
               </label>
-              <input type="text" placeholder="password" name='password' class="input input-bordered" required />
+              <input type="password" placeholder="password" name='password' class="input input-bordered" required />
 
             </div>
             <div class="form-control mt-6">

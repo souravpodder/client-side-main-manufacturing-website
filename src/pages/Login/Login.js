@@ -3,8 +3,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
+
 
 const Login = () => {
+
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,11 +38,17 @@ const Login = () => {
   }
 
   if (loading || googleLoading) {
-    return <p>loading...</p>;
+    return <Loading />;
+  }
+
+  if (user) {
+    console.log(user);
+    navigate(from, { replace: true });
   }
 
   if (googleUser) {
-    navigate('/home');
+    console.log(googleUser);
+    navigate(from, { replace: true });
   }
 
 
@@ -73,7 +82,7 @@ const Login = () => {
               <label class="label">
                 <span class="label-text">Password</span>
               </label>
-              <input type="text" placeholder="password" name='password' onBlur={handlePasswordBlur} class="input input-bordered" required />
+              <input type="password" placeholder="password" name='password' onBlur={handlePasswordBlur} class="input input-bordered" required />
 
             </div>
             <div class="form-control mt-6">

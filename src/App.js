@@ -23,6 +23,7 @@ import AddProduct from './pages/Dashboard/AddProduct';
 import MakeAdmin from './pages/Dashboard/MakeAdmin';
 import ManageParts from './pages/Dashboard/ManageParts';
 import MakePayment from './pages/Dashboard/MakePayment';
+import Blogs from './pages/Blogs';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path='/' element={<Home />}></Route>
         <Route path='/home' element={<Home />}></Route>
         <Route path='/about' element={<About />}></Route>
+        <Route path='/blogs' element={<Blogs />}></Route>
 
         {/* user authentication routes */}
         <Route path='/purchase/:itemId' element={

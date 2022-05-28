@@ -17,6 +17,11 @@ import RequireAuth from './pages/Login/RequireAuth';
 import Purchase from './pages/Purchase/Purchase';
 import Footer from './pages/Shared/Footer/Footer';
 import Navbar from './pages/Shared/Navbar';
+import RequireAdmin from './pages/Login/RequireAdmin';
+import ManageOrders from './pages/Dashboard/ManageOrders';
+import AddProduct from './pages/Dashboard/AddProduct';
+import MakeAdmin from './pages/Dashboard/MakeAdmin';
+import ManageParts from './pages/Dashboard/ManageParts';
 
 function App() {
   return (
@@ -45,6 +50,28 @@ function App() {
           <Route index element={<MyOrders />} />
           <Route path='addReview' element={<AddReview />} />
           <Route path='myProfile' element={<MyProfile />} />
+
+          {/* admin routes  */}
+          <Route path='manageorder' element={
+            <RequireAdmin>
+              <ManageOrders />
+            </RequireAdmin>
+          } />
+          <Route path='addproduct' element={
+            <RequireAdmin>
+              <AddProduct />
+            </RequireAdmin>
+          } />
+          <Route path='makeadmin' element={
+            <RequireAdmin>
+              <MakeAdmin />
+            </RequireAdmin>
+          } />
+          <Route path='manageparts' element={
+            <RequireAdmin>
+              <ManageParts />
+            </RequireAdmin>
+          } />
         </Route>
 
         <Route path='/login' element={<Login />}></Route>

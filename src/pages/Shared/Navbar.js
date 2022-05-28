@@ -30,7 +30,7 @@ const Navbar = () => {
     <li><NavLink to="/about">About</NavLink></li>
 
     {
-      user && <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+      user && <li><NavLink to="/dashboard/myprofile">Dashboard</NavLink></li>
     }
     {
       user ? <button onClick={logout}>signout</button> : <li><NavLink to="/login">Login</NavLink></li>

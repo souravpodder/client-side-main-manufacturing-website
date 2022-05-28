@@ -48,7 +48,26 @@ const Login = () => {
 
   if (googleUser) {
     console.log(googleUser);
+    const email = googleUser?.user?.email;
+    const currentUser = { email: email };
+    if (email) {
+      fetch(`http://localhost:5000/user/${email}`, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(currentUser)
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+        })
+    }
     navigate(from, { replace: true });
+  }
+
+  const googleSignIn = async () => {
+    signInWithGoogle();
   }
 
 
@@ -94,7 +113,7 @@ const Login = () => {
           <p className='text-center'>Not Registered Yet? <Link to="/register" className='font-bold text-primary'>Register Now!</Link></p>
           <div class="divider">OR</div>
           <div class="form-control">
-            <button class="btn btn-secondary font-bold text-white" onClick={() => signInWithGoogle()} >Continue with google</button>
+            <button class="btn btn-secondary font-bold text-white" onClick={googleSignIn} >Continue with google</button>
           </div>
           {googleErrorElement}
         </div>

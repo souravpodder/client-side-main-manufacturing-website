@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
@@ -16,6 +16,27 @@ const Register = () => {
 
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
+  // const [currentUser, setCurrentUser] = useState('');
+
+
+  useEffect(() => {
+    const email = user?.user?.email;
+    const currentUser = { email: email };
+    if (email) {
+      fetch(`http://localhost:5000/user/${email}`, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(currentUser)
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+        })
+    }
+  }, [user?.user?.email])
+
   let errorElement;
   if (error) {
     errorElement = <p className='text-center text-red-600'>Error: {error && error.message}</p>
@@ -26,6 +47,7 @@ const Register = () => {
   }
 
   if (user) {
+    console.log(user);
     navigate('/');
   }
 

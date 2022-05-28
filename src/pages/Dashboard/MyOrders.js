@@ -10,6 +10,15 @@ const MyOrders = () => {
   const [user, loading] = useAuthState(auth);
   const [removingOrder, setRemovingOrder] = useState(false);
 
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/payment/${order._id}`)
+  //     .then(res => res.json)
+  //     .then(data => {
+  //       setPayment(data)
+  //     })
+  // }, [order._id])
+
   useEffect(() => {
     fetch(`http://localhost:5000/myorders?email=${user.email}`)
       .then(res => res.json())
@@ -52,10 +61,10 @@ const MyOrders = () => {
                 </td>
 
                 <td>
-                  {(order.price && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-xs btn-success'>Pay</button></Link>}
-                  {(order.price && order.paid) && <>
+                  {(order.totalPrice && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-sm btn-secondary font-bold text-xl'>Pay</button></Link>}
+                  {(order.totalPrice && order.paid) && <>
                     <p><span className='text-success'>Paid</span></p>
-                    <p>Transaction Id: {order.transanctionId}</p>
+                    <p>Transaction Id: {order.transactionId}</p>
                   </>}
                 </td>
               </tr>)

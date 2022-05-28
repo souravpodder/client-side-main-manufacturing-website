@@ -11,14 +11,6 @@ const MyOrders = () => {
   const [removingOrder, setRemovingOrder] = useState(false);
 
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/payment/${order._id}`)
-  //     .then(res => res.json)
-  //     .then(data => {
-  //       setPayment(data)
-  //     })
-  // }, [order._id])
-
   useEffect(() => {
     fetch(`http://localhost:5000/myorders?email=${user.email}`)
       .then(res => res.json())
@@ -57,14 +49,16 @@ const MyOrders = () => {
                 <td>{order.totalPrice}</td>
                 <td>
                   {/* <button className='btn btn-xs btn-error font-bold' onClick={() => setRemovingOrder(order)}>Cancel</button> */}
-                  <label for="delete-confirm-modal" class="btn btn-sm btn-error" onClick={() => setRemovingOrder(order)}>Cancel</label>
+                  {(order.totalPrice && !order.paid) && <label for="delete-confirm-modal" class="btn btn-sm btn-error" onClick={() => setRemovingOrder(order)}>Cancel</label>}
+
+
                 </td>
 
                 <td>
                   {(order.totalPrice && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-sm btn-secondary font-bold text-xl'>Pay</button></Link>}
                   {(order.totalPrice && order.paid) && <>
-                    <p><span className='text-success'>Paid</span></p>
-                    <p>Transaction Id: {order.transactionId}</p>
+                    <p><span className='text-success font-semibold'>Paid</span></p>
+                    <p >Transaction Id:  <span className='font-bold'>{order.transactionId}</span>  </p>
                   </>}
                 </td>
               </tr>)

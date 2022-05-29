@@ -53,30 +53,7 @@ const Login = () => {
     return <Loading />;
   }
 
-  // if (user) {
-  //   console.log(user);
-  //   navigate(from, { replace: true });
-  // }
 
-  // if (googleUser) {
-  //   console.log(googleUser);
-  //   const email = googleUser?.user?.email;
-  //   const currentUser = { email: email };
-  //   if (email) {
-  //     fetch(`http://localhost:5000/user/${email}`, {
-  //       method: 'PUT',
-  //       headers: {
-  //         'content-type': 'application/json',
-  //       },
-  //       body: JSON.stringify(currentUser)
-  //     })
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         console.log(data);
-  //       })
-  //   }
-  //   navigate(from, { replace: true });
-  // }
 
   const googleSignIn = async () => {
     signInWithGoogle();

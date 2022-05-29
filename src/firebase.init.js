@@ -8,12 +8,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBYI4BPuNZmxsIhF_HcQTJ9ooX3cbnK7PI",
-  authDomain: "camera-parts-manufacturer.firebaseapp.com",
-  projectId: "camera-parts-manufacturer",
-  storageBucket: "camera-parts-manufacturer.appspot.com",
-  messagingSenderId: "204720796739",
-  appId: "1:204720796739:web:4b1d8b33e0a3082bf050f6"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGINGSENDER_ID,
+  appId: process.env.REACT_APP_APP_ID
 };
 
 // Initialize Firebase

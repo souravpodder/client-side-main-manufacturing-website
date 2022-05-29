@@ -26,14 +26,16 @@ const Navbar = () => {
 
   const navItems = <>
     <li><NavLink to="/home">Home</NavLink></li>
-    <li><NavLink to="/contact">Contact</NavLink></li>
-    <li><NavLink to="/blogs">Blogs</NavLink></li>
+
 
     {
       user && <li><NavLink to="/dashboard/myprofile">Dashboard</NavLink></li>
     }
+
+    <li><NavLink to="/portfolio">My PortFolio</NavLink></li>
+    <li><NavLink to="/blogs">Blogs</NavLink></li>
     {
-      user ? <button onClick={logout}>signout</button> : <li><NavLink to="/login">Login</NavLink></li>
+      user ? <><span className="font-bold mt-3 mr-2">{user?.displayName}</span> <button onClick={logout}>signout</button></> : <li><NavLink to="/login">Login</NavLink></li>
     }
 
 

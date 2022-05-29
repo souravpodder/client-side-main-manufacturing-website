@@ -83,7 +83,8 @@ const CheckoutForm = ({ order }) => {
       // store payment data 
       const payment = {
         order: _id,
-        transactionId: paymentIntent.id
+        transactionId: paymentIntent.id,
+        status: 'pending'
       }
       //update paymentinfo
       fetch(`http://localhost:5000/order/${_id}`, {

@@ -1,10 +1,13 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const AddReview = () => {
   const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
+
   const handleReview = (event) => {
     event.preventDefault();
     const review = event.target.review?.value;
@@ -18,13 +21,24 @@ const AddReview = () => {
     fetch('http://localhost:5000/addreview', {
       method: 'POST',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
       },
       body: JSON.stringify(reviewDetails)
     })
-      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        if (res.status === 403 || res.status === 401) {
+          navigate('/');
+        }
+        return res.json();
+      })
       .then(data => {
-        toast('Your Review has been recorded');
+        console.log(data);
+        if (data.message !== "Forbidden Access") {
+
+          toast('Your Review has been recorded');
+        }
       })
 
   }

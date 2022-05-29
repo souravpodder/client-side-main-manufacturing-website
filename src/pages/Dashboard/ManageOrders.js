@@ -1,12 +1,26 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import Loading from '../Shared/Loading';
 
 const ManageOrders = () => {
+  const navigate = useNavigate();
+
   const { data: orders, isLoading, refetch } = useQuery('orders', () =>
-    fetch('http://localhost:5000/orders').then(res =>
-      res.json()
-    )
+    fetch('http://localhost:5000/orders', {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+      .then(res => {
+        console.log(res);
+        if (res.status === 403 || res.status === 401) {
+          navigate('/');
+          return;
+        }
+        return res.json();
+      })
   )
 
   if (isLoading) {
@@ -67,7 +81,7 @@ const ManageOrders = () => {
           <tbody>
 
             {
-              orders.map((order, index) => <tr key={index}>
+              orders?.map((order, index) => <tr key={index}>
                 <th>{index + 1}</th>
                 <td>{order.email}</td>
                 <td>{order.totalPrice}</td>

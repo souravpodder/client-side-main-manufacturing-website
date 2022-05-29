@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 import DeleteOrderModal from './DeleteOrderModal';
@@ -9,16 +9,31 @@ const MyOrders = () => {
   const [myOrders, setMyOrders] = useState([]);
   const [user, loading] = useAuthState(auth);
   const [removingOrder, setRemovingOrder] = useState(false);
+  const navigate = useNavigate();
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myorders?email=${user.email}`)
-      .then(res => res.json())
+    fetch(`http://localhost:5000/myorders?email=${user.email}`, {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+      .then(res => {
+        console.log(res);
+        if (res.status === 403 || res.status === 401) {
+          navigate('/');
+        }
+        return res.json();
+      })
+
       .then(data => {
-        console.log(data);
+        // console.log(data);
         setMyOrders(data)
       })
-  }, [user.email])
+  }, [user.email, navigate])
+
+
   if (loading) {
     return <Loading />
   }

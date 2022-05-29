@@ -1,16 +1,32 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const DeletePartModal = ({ removingPart, setRemovingPart, refetch }) => {
   const { _id, name } = removingPart;
+  const navigate = useNavigate();
   console.log(removingPart);
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/part/${id}`, {
       method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
     })
-      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        if (res.status === 403 || res.status === 401) {
+          navigate('/');
+
+        }
+        return res.json();
+      })
       .then(data => {
-        toast('part deleted');
+
+
+        toast('Part has been deleted');
+
         // const remainingOrders = myOrders.filter(myOrder => myOrder._id !== id);
         // setMyOrders(remainingOrders);
         refetch();

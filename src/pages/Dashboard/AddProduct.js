@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const AddProduct = () => {
+  const navigate = useNavigate();
   const handleAddProduct = (event) => {
     event.preventDefault();
     const partInfo = {
@@ -16,11 +18,19 @@ const AddProduct = () => {
     fetch('http://localhost:5000/part', {
       method: 'POST',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
       },
       body: JSON.stringify(partInfo)
     })
-      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        if (res.status === 403 || res.status === 401) {
+          navigate('/');
+          return;
+        }
+        return res.json();
+      })
       .then(data => {
         toast.success('Product Added Successfully!')
       })

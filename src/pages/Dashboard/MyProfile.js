@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const MyProfile = () => {
+  const navigate = useNavigate();
 
   const [education, setEducation] = useState('');
   const [city, setCity] = useState('');
@@ -53,19 +55,28 @@ const MyProfile = () => {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
       },
       body: JSON.stringify(userInfo)
     })
-      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        if (res.status === 403 || res.status === 401) {
+          navigate('/');
+        }
+        return res.json();
+      })
       .then(data => {
-        console.log(data);
-        toast.success('User Info Updated Successfully')
+
+        toast('User Info Updated Successfully');
+
+
       })
 
   }
 
   if (user) {
-    console.log(user)
+    // console.log(user)
   }
 
   return (

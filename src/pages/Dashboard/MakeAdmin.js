@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading';
 
 const MakeAdmin = () => {
   // const [users, setUsers] = useState('');
+  const navigate = useNavigate();
 
   const { data: users, isLoading, refetch } = useQuery('users', () =>
-    fetch('http://localhost:5000/users').then(res =>
-      res.json()
-    )
+    fetch('http://localhost:5000/users', {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    }).then(res => {
+      console.log(res);
+      if (res.status === 403 || res.status === 401) {
+        navigate('/');
+        return;
+      }
+      return res.json();
+    })
   )
 
   if (isLoading) {
@@ -46,7 +58,7 @@ const MakeAdmin = () => {
           <tbody>
 
             {
-              users.map(user => <tr key={user._id}>
+              users?.map(user => <tr key={user._id}>
                 <td>{user.email}</td>
                 <td>{user.role !== 'admin' && <button class="btn btn-active btn-secondary font-bold text-white" onClick={() => appointAdmin(user.email)}>Make Admin</button>}</td>
               </tr>)

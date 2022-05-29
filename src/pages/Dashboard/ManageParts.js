@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import Loading from '../Shared/Loading';
 import DeletePartModal from './DeletePartModal';
 
 
 const ManageParts = () => {
 
+
   const [removingPart, setRemovingPart] = useState(false);
 
 
   const { data: parts, isLoading, refetch } = useQuery('parts', () =>
-    fetch('http://localhost:5000/parts').then(res =>
+    fetch('http://localhost:5000/parts',).then(res =>
       res.json()
     )
   )

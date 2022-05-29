@@ -10,12 +10,12 @@ const AddProduct = () => {
       name: event.target.name?.value,
       img: event.target.img?.value,
       description: event.target.description?.value,
-      minimum_order: event.target.minimum_order?.value,
-      available: event.target.available?.value,
-      price: event.target.price?.value
+      minimum_order: parseInt(event.target.minimum_order?.value),
+      available: parseInt(event.target.available?.value),
+      price: parseInt(event.target.price?.value)
     }
 
-    fetch('http://localhost:5000/part', {
+    fetch('https://floating-sierra-37229.herokuapp.com/part', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -66,19 +66,19 @@ const AddProduct = () => {
                 <label class="label">
                   <span class="label-text">Minimum Order</span>
                 </label>
-                <input type="text" placeholder="minimum order quantity" name='minimum_order' class="input input-bordered" required />
+                <input type="number" placeholder="minimum order quantity" name='minimum_order' class="input input-bordered" required />
               </div>
               <div class="form-control">
                 <label class="label">
                   <span class="label-text">Available</span>
                 </label>
-                <input type="text" placeholder="available pcs" name='available' class="input input-bordered" required />
+                <input type="number" placeholder="available pcs" name='available' class="input input-bordered" required />
               </div>
               <div class="form-control">
                 <label class="label">
                   <span class="label-text">Price</span>
                 </label>
-                <input type="text" placeholder="price/unit" name='price' class="input input-bordered" required />
+                <input type="number" placeholder="price/unit" name='price' class="input input-bordered" required />
               </div>
 
               <div class="form-control mt-6">

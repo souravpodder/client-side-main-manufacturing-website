@@ -12,7 +12,7 @@ const ManageParts = () => {
 
 
   const { data: parts, isLoading, refetch } = useQuery('parts', () =>
-    fetch('http://localhost:5000/parts',).then(res =>
+    fetch('https://floating-sierra-37229.herokuapp.com/parts',).then(res =>
       res.json()
     )
   )

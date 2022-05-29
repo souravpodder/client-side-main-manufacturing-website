@@ -4,7 +4,7 @@ import Part from './Part/Part';
 const Parts = () => {
   const [parts, setParts] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/parts')
+    fetch('https://floating-sierra-37229.herokuapp.com/parts')
       .then(res => res.json())
       .then(data => setParts(data))
   }, [])

@@ -2,12 +2,17 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 import useAdmin from './useAdmin';
 
 
 const Dashboard = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [admin] = useAdmin(user);
+
+  if (loading) {
+    return <Loading />
+  }
   return (
     <div class="drawer drawer-mobile">
       <input id="dashboard-sidebar" type="checkbox" class="drawer-toggle" />
@@ -21,8 +26,8 @@ const Dashboard = () => {
         <ul class="menu p-4 overflow-y-auto w-60 bg-base-100 text-base-content">
           {/* <!-- Sidebar content here --> */}
           {
-            (user && !admin) && <>
-              <li><Link to="/dashboard">My Orders</Link></li>
+            (!admin && user) && <>
+              <li><Link to="/dashboard/myorders">My Orders</Link></li>
               <li><Link to="/dashboard/addReview">Add a Review</Link></li>
             </>
           }

@@ -7,7 +7,7 @@ const ManageOrders = () => {
   const navigate = useNavigate();
 
   const { data: orders, isLoading, refetch } = useQuery('orders', () =>
-    fetch('http://localhost:5000/orders', {
+    fetch('https://floating-sierra-37229.herokuapp.com/orders', {
       method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -31,7 +31,7 @@ const ManageOrders = () => {
     const statusInfo = {
       status: 'shipped'
     }
-    fetch(`http://localhost:5000/order/shipment/${id}`, {
+    fetch(`https://floating-sierra-37229.herokuapp.com/order/shipment/${id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
@@ -48,7 +48,7 @@ const ManageOrders = () => {
   const handleCancelOrder = (id) => {
     const proceed = window.confirm('Are You sure to delete this order?');
     if (proceed) {
-      fetch(`http://localhost:5000/order/${id}`, {
+      fetch(`https://floating-sierra-37229.herokuapp.com/order/${id}`, {
         method: 'DELETE'
       })
         .then(res => res.json())

@@ -5,7 +5,7 @@ const DeleteOrderModal = ({ removingOrder, setRemovingOrder, myOrders, setMyOrde
   const { _id, itemName, email } = removingOrder;
   console.log(removingOrder);
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/order/${id}`, {
+    fetch(`https://floating-sierra-37229.herokuapp.com/order/${id}`, {
       method: 'DELETE',
     })
       .then(res => res.json())

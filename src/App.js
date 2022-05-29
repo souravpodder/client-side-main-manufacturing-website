@@ -52,10 +52,16 @@ function App() {
           </RequireAuth>
         } >
 
-          <Route index element={<MyOrders />} />
-          <Route path='addReview' element={<AddReview />} />
-          <Route path='myProfile' element={<MyProfile />} />
-          <Route path='payment/:id' element={<MakePayment />} />
+          <Route path='myorders' element={
+            <RequireAuth>
+
+              <MyOrders />
+            </RequireAuth>
+          } />
+          <Route path='addReview' element={
+            <RequireAuth><AddReview /></RequireAuth>} />
+          <Route path='myProfile' element={<RequireAuth><MyProfile /></RequireAuth>} />
+          <Route path='payment/:id' element={<RequireAuth><MakePayment /></RequireAuth>} />
 
           {/* admin routes  */}
           <Route path='manageorder' element={

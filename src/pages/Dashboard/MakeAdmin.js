@@ -9,7 +9,7 @@ const MakeAdmin = () => {
   const navigate = useNavigate();
 
   const { data: users, isLoading, refetch } = useQuery('users', () =>
-    fetch('http://localhost:5000/users', {
+    fetch('https://floating-sierra-37229.herokuapp.com/users', {
       method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -29,7 +29,7 @@ const MakeAdmin = () => {
   }
 
   const appointAdmin = (email) => {
-    fetch(`http://localhost:5000/user/admin/${email}`, {
+    fetch(`https://floating-sierra-37229.herokuapp.com/user/admin/${email}`, {
       method: 'PUT',
     })
       .then(res =>

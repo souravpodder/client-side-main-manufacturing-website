@@ -18,7 +18,7 @@ const AddReview = () => {
       ratings: data.ratings,
     }
 
-    fetch('http://localhost:5000/addreview', {
+    fetch('https://floating-sierra-37229.herokuapp.com/addreview', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -52,7 +52,7 @@ const AddReview = () => {
   //     ratings,
   //   }
 
-  //   fetch('http://localhost:5000/addreview', {
+  //   fetch('https://floating-sierra-37229.herokuapp.com/addreview', {
   //     method: 'POST',
   //     headers: {
   //       'Content-type': 'application/json',

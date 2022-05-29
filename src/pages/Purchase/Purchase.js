@@ -12,7 +12,7 @@ const Purchase = () => {
   const [action, setAction] = useState(false);
 
   useEffect(() => {
-    const url = `http://localhost:5000/part/${itemId}`;
+    const url = `https://floating-sierra-37229.herokuapp.com/part/${itemId}`;
     fetch(url)
       .then(res => res.json())
       .then(data => {
@@ -22,7 +22,7 @@ const Purchase = () => {
   }, [itemId])
 
   const { minimum_order, description, available, name, price, _id } = part;
-
+  console.log(part);
   const handlePlaceOrder = (event) => {
     event.preventDefault();
     const orderQuantity = event.target.order_quantity?.value;
@@ -45,7 +45,7 @@ const Purchase = () => {
       setAction(true);
     } else {
       toast('order successful');
-      fetch('http://localhost:5000/order', {
+      fetch('https://floating-sierra-37229.herokuapp.com/order', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json'

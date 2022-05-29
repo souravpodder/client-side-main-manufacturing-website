@@ -16,7 +16,7 @@ const CheckoutForm = ({ order }) => {
   const { _id, totalPrice, email, name } = order;
 
   useEffect(() => {
-    fetch('http://localhost:5000/create-payment-intent', {
+    fetch('https://floating-sierra-37229.herokuapp.com/create-payment-intent', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -87,7 +87,7 @@ const CheckoutForm = ({ order }) => {
         status: 'pending'
       }
       //update paymentinfo
-      fetch(`http://localhost:5000/order/${_id}`, {
+      fetch(`https://floating-sierra-37229.herokuapp.com/order/${_id}`, {
         method: 'PATCH',
         headers: {
           'content-type': 'application/json'

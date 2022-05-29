@@ -11,7 +11,7 @@ const stripePromise = loadStripe('pk_test_51L2zfAAVOHxdpQcyVc6qWWViya7NNQvDWUHSB
 
 const MakePayment = () => {
   const { id } = useParams();
-  const url = `http://localhost:5000/order/${id}`;
+  const url = `https://floating-sierra-37229.herokuapp.com/order/${id}`;
   const { data: order, isLoading } = useQuery(['order', id], () => fetch(url).then(res => res.json()))
 
   // console.log(appointment);

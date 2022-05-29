@@ -7,7 +7,7 @@ const DeletePartModal = ({ removingPart, setRemovingPart, refetch }) => {
   const navigate = useNavigate();
   console.log(removingPart);
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/part/${id}`, {
+    fetch(`https://floating-sierra-37229.herokuapp.com/part/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',

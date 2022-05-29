@@ -13,7 +13,7 @@ const MyOrders = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myorders?email=${user.email}`, {
+    fetch(`https://floating-sierra-37229.herokuapp.com/myorders?email=${user.email}`, {
       method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -18,24 +19,26 @@ const Register = () => {
 
   // const [currentUser, setCurrentUser] = useState('');
 
+  const [token] = useToken(user);
 
-  useEffect(() => {
-    const email = user?.user?.email;
-    const currentUser = { email: email };
-    if (email) {
-      fetch(`http://localhost:5000/user/${email}`, {
-        method: 'PUT',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(currentUser)
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-        })
-    }
-  }, [user?.user?.email])
+
+  // useEffect(() => {
+  //   const email = user?.user?.email;
+  //   const currentUser = { email: email };
+  //   if (email) {
+  //     fetch(`http://localhost:5000/user/${email}`, {
+  //       method: 'PUT',
+  //       headers: {
+  //         'content-type': 'application/json',
+  //       },
+  //       body: JSON.stringify(currentUser)
+  //     })
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         console.log(data);
+  //       })
+  //   }
+  // }, [user?.user?.email])
 
   let errorElement;
   if (error) {
@@ -46,10 +49,15 @@ const Register = () => {
     return <Loading />
   }
 
-  if (user) {
-    console.log(user);
+  // if (user) {
+  //   console.log(user);
+  //   navigate('/');
+  // }
+
+  if (token) {
     navigate('/');
   }
+
 
   const handleSignUp = async (event) => {
     event.preventDefault();

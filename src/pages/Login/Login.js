@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import useToken from '../../hooks/useToken';
 
 
 const Login = () => {
@@ -11,6 +12,8 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+
 
   const [
     signInWithEmailAndPassword,
@@ -26,6 +29,8 @@ const Login = () => {
   const from = location.state?.from?.pathname || '/';
 
   const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
+  const [token] = useToken(user || googleUser);
   // handle error 
   let errorElement;
   if (error) {
@@ -37,34 +42,41 @@ const Login = () => {
     googleErrorElement = <p className='text-red-600 text-center fw-bold'>{googleError?.message}</p>
   }
 
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate])
+
   if (loading || googleLoading) {
     return <Loading />;
   }
 
-  if (user) {
-    console.log(user);
-    navigate(from, { replace: true });
-  }
+  // if (user) {
+  //   console.log(user);
+  //   navigate(from, { replace: true });
+  // }
 
-  if (googleUser) {
-    console.log(googleUser);
-    const email = googleUser?.user?.email;
-    const currentUser = { email: email };
-    if (email) {
-      fetch(`http://localhost:5000/user/${email}`, {
-        method: 'PUT',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(currentUser)
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-        })
-    }
-    navigate(from, { replace: true });
-  }
+  // if (googleUser) {
+  //   console.log(googleUser);
+  //   const email = googleUser?.user?.email;
+  //   const currentUser = { email: email };
+  //   if (email) {
+  //     fetch(`http://localhost:5000/user/${email}`, {
+  //       method: 'PUT',
+  //       headers: {
+  //         'content-type': 'application/json',
+  //       },
+  //       body: JSON.stringify(currentUser)
+  //     })
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         console.log(data);
+  //       })
+  //   }
+  //   navigate(from, { replace: true });
+  // }
 
   const googleSignIn = async () => {
     signInWithGoogle();

@@ -1,19 +1,17 @@
 # Camera ToolsPoint
 
-## [Live Site Link](https://sports-gear-inventory-a38bb.web.app/)
+## [Live Site Link](https://camera-parts-manufacturer.web.app/)
 
-Go to Live Site: [https://sports-gear-inventory-a38bb.web.app/](https://sports-gear-inventory-a38bb.web.app/)
-
+Go to Live Site: [https://camera-parts-manufacturer.web.app/](https://camera-parts-manufacturer.web.app/)
 
 ## Features of the website:
 
-- The users can deliver a specific product anytime and keep the calculations
+- Authentication System is implemented on this website which gives the registered users some extra functionalities
 
-- If a product is sold the user can restock the item
+- The loggedin users and admin can see their profile info and update them anytime
 
-- A new item can be added anytime easily
+- Admin verification system is implemented
 
-- A specific user can see his/her added items and can also delete them from the inventory
+- jwt token is implemented for maintaining security
 
-- jwt token is implemented for extra security
-
+- On the dashboard the admins can add parts , manage the orders, make others users admin

@@ -1,11 +1,13 @@
 .hero-banner{
   background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),  
-  url(../../../assets/images/chair.png), no-repeat;
+  url(../../../assets/images/bgbanner.jpg), no-repeat;
+  background-position: center;
   background-size: cover;
   width: 100%;
   height: 70vh;
 }
 
 .banner-img{
-  width: 100%;
+  width: 500px;
+  height: 400px;
 }

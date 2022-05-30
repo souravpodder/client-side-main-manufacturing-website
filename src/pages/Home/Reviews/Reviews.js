@@ -9,7 +9,7 @@ const Reviews = () => {
       .then(data => {
         setReviews(data)
       })
-  }, [])
+  }, [reviews])
   return (
     <>
       <h3 className='text-3xl text-center text-violet-700 mt-10'> Customer Reviews</h3>

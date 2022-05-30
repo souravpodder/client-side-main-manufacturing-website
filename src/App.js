@@ -25,6 +25,7 @@ import ManageParts from './pages/Dashboard/ManageParts';
 import MakePayment from './pages/Dashboard/MakePayment';
 import Blogs from './pages/Blogs';
 import MyPortfolio from './pages/MyPortfolio/MyPortfolio';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   return (
@@ -89,6 +90,7 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
+        <Route path='*' element={<NotFound />}></Route>
       </Routes>
       <Footer />
       <ToastContainer />
